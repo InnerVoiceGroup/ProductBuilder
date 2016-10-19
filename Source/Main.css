@@ -1,0 +1,221 @@
+#preview-container {
+	height: 550px;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	border: 1px solid black;
+	padding: 0!important;
+	position: relative;
+}
+
+body:not(.hide-full-list) #preview-container.active {
+	overflow-y: auto;	
+}
+
+
+.product-builder-preview-button {
+	position: absolute;
+	opacity: 0;
+	display: none;
+	font-size: 50px;
+	padding: 0 30px;
+	margin: 50px 0;
+
+	line-height: 350px;
+	background: rgba(0, 0, 0, 0.0);
+	
+	top: 0;
+	bottom: 0;
+	
+	font-weight: 100;
+	color: lightGrey;
+	
+	transition: opacity 500ms, color 500ms;
+	z-index: 1001!important;
+}
+
+.product-builder-preview-button:hover {
+	text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+	font-weight: 500;
+	cursor: pointer;
+	color: grey;
+	
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none;   /* Chrome/Safari/Opera */
+	-khtml-user-select: none;    /* Konqueror */
+	-moz-user-select: none;      /* Firefox */
+	-ms-user-select: none;       /* Internet Explorer/Edge */
+	user-select: none;           /* Non-prefixed version, currently
+								  not supported by any browser */
+}
+
+.product-builder-preview-button:active {
+	font-weight: 900;
+}
+
+body:not(.hide-full-list) #preview-container.active .product-builder-preview-button {
+	opacity: 1;
+	display: block;
+	transition: opacity 500ms 500ms, background-color 200ms ease;
+}
+
+.product-builder-preview-button.left {
+	left: 0;
+}
+
+.product-builder-preview-button.right {
+	right: 0;
+}
+
+.product-builder-preview-attribute {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 450px;
+	margin: auto;
+	text-align: center;
+	
+	transition: opacity 1s;
+}
+
+.product-builder-preview-attribute-image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+}
+.product-builder-preview-attribute-image.active {
+	animation: product-builder-preview-attribute-active-true  500ms ease forwards;
+}
+.product-builder-preview-attribute-image:not(.active) {
+	animation: product-builder-preview-attribute-active-false  500ms ease forwards;
+}
+
+/*
+ * The following code will handle the loading gif
+ */
+.loading .product-builder-preview-attribute, .loading .color-pallet {
+	opacity: 0;
+}
+
+#loading {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	
+	opacity: 0;
+	z-index: 999;
+	
+	transition: opacity 500ms;
+}
+
+.loading #loading {
+	opacity: 1;
+}
+
+#ProductBuilder-Loading-Label {
+	margin-top: 100px;
+	opacity:0;
+
+	z-index: 999;
+	transition: opacity 500ms;
+}
+
+.loading #ProductBuilder-Loading-Label {
+	opacity: 1;
+}
+
+#strap-color img {
+	-ms-transform: scale(2, 3); /* IE 9 */
+    -webkit-transform: scale(2, 3); /* Safari */
+    transform: scale(0.95, 0.95);
+}
+
+@keyframes product-builder-preview-attribute-active-false {
+	from {
+		opacity: 1;
+	}
+    to {
+		opacity: 0;
+	}
+}
+@keyframes product-builder-preview-attribute-active-true {
+	from {
+		opacity: 0;
+	}
+    to {
+		opacity: 1;
+	}
+}
+
+/*
+ * The rest of the code is specific to wallet builder
+ */
+#front-plate-color.product-builder-preview-attribute {
+	z-index: 3;
+}
+
+#strap-color.product-builder-preview-attribute {
+	z-index: 4;
+}
+#back-plate-color.product-builder-preview-attribute {
+	z-index: 1;
+}
+
+#center-plate-color.product-builder-preview-attribute {
+	z-index: 2;
+}
+
+/* Scrollbar */ 
+
+#preview-container::-webkit-scrollbar{width: 7px;}
+
+#preview-container::-webkit-scrollbar-thumb{background-color:rgb(17, 17, 17); border-radius: 0;}
+#preview-container::-webkit-scrollbar-thumb:hover{background-color:rgb(17, 17, 17);}
+
+#preview-container::-webkit-scrollbar-track{background-color:rgb(119, 119, 119);}
+
+
+/* End Scrollbar */
+
+/* Shopify specific themes */
+
+.product-detail .product-form .input-row label {
+    width: 150px;
+}
+
+form .input-row select {
+    width: 100px;
+}
+
+/*
+ * Color Pallet Themes
+ */
+.color-pallet {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	margin: auto;
+	text-align: center;
+	z-index: 1005;
+}
+
+.color-pallet-option {
+	border: 1px solid black;
+	width: 30px;
+	height: 30px;
+	margin: 5px;
+	display: inline-block;
+}
+
+body:not(.hide-full-list) .full-options-label-container, body:not(.hide-full-list) .color-pallet {
+	display: none;
+}
+body.hide-full-list .product-builder-attribute-container.selector-wrapper{
+	display:none;
+}
