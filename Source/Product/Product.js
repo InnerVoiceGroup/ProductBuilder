@@ -1,26 +1,33 @@
+/*
+ * Our main product class
+ * In should be initialized in Main.js
+ * Requires: a complete config object
+ */
 function Product(data) {
 	this.Construct = function(data) {
 		//save the product title
 		this.title = data.Title || "New Product";
-		
+		//create a new style tag for this specific producs
 		this.style = $("<style />", {
 			"class": "product-builder-style"
 		});
-		
+		//create a container for our DOM elements
 		this.fullContainer = $("<div />", {
 			"class": "full-options-label-container"
 		});
-		
+		//this represents the physical dom label next to our dropdown object
 		this.label = $("<h3 />", {
 			"text": "Want even more control over your HuMn Wallet?"
 		});
-		
+		//this will allow us to hide all dropdown elements unless the user wants to customize more fully
 		this.yesButton = label = $("<input />", {
 			"type": "button",
 			"class": "yes-button",
 			"value": "Customize!"
 		});
 		
+		/* Event Listeners */
+		//create events for on our yes button click
 		this.yesButton.on("click", function() {
 			$(document.body).removeClass("hide-full-list");
 		});
@@ -28,34 +35,45 @@ function Product(data) {
 		this.fullContainer.append(this.label);
 		this.fullContainer.append(this.yesButton);
 		
+		//this will contain all attrobutes contained within our product
 		this.attributes = [];
 		//create all the included attribute objects in our product
 		for(var i=0; i<data.Attributes.length; i++) {
+			//create a temp attribute based on the config object
 			var temp = new Attribute(data.Attributes[i]);
+			//push the attribute to our attribute list
 			this.attributes.push(temp);
-			
+			//add the attribute styling to our products style tag
 			this.style[0].innerHTML += temp.style;
 			this.style[0].innerHTML += temp.keyframeOn;
 			this.style[0].innerHTML += temp.keyframeOff;
-			
+			//add the style tag to our bodys DOM
 			$("body").append(this.style);
 		}
 		
+		//create a color pallet for our product
+		//note this is only visible when customize has not been clicked
 		this.pallet = $("<div />", {
 			"class": "color-pallet",
 		});
 		
+		//load in our product presents
+		//itterate through all config presets
 		for(i=0; i<data.Presets.length; i++) {
+			//create a temp preset object
 			var preset = data.Presets[i];
 			classString = "";
+			//itterate through all the preset attributes
 			for(j=0; j<preset.Attributes.length; j++) classString += " " + preset.Attributes[j].Value.split(" ").join("rettophtempplaceholder");
+			//create a color box based on our preset/attribute values
 			tempColorBox = $("<div />", {
 				"class": "color-pallet-option" + classString,
 				"text": preset.Value,
 				"style": "background: " + preset.Color
 			});
-			
+			/* Event Listeners */
 			tempColorBox.on("click", function(event) {
+				//itterate through all our presets and add event listers to the dom objects
 				for(i=0; i<preset.Attributes.length; i++) {
 					console.log(event.target.classList);
 					_product.attributes[i].dropdown[0].value = event.target.classList[i + 1].split("rettophtempplaceholder").join(" ");
