@@ -2,7 +2,6 @@
 	height: 550px;
 	overflow-x: hidden;
 	overflow-y: hidden;
-	border: 1px solid black;
 	padding: 0!important;
 	position: relative;
 }
@@ -96,7 +95,7 @@ body:not(.hide-full-list) #preview-container.active .product-builder-preview-but
 /*
  * The following code will handle the loading gif
  */
-.loading .product-builder-preview-attribute {
+.loading .product-builder-preview-attribute, .loading .color-pallet {
 	opacity: 0;
 }
 

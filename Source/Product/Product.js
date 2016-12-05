@@ -64,7 +64,7 @@ function Product(data) {
 			var preset = data.Presets[i];
 			classString = "";
 			//itterate through all the preset attributes
-			for(j=0; j<preset.Attributes.length; j++) classString += " " + preset.Attributes[j].Value.split(" ").join("rettophtempplaceholder");
+			for(j=0; j<preset.Attributes.length; j++) classString += " " + preset.Attributes[j].Value.split(" ").join("rettophtempplaceholder") + ":" + preset.Attributes[j].sku;
 			//create a color box based on our preset/attribute values
 			tempColorBox = $("<div />", {
 				"class": "color-pallet-option" + classString,

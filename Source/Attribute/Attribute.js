@@ -62,7 +62,9 @@ function Attribute(data) {
 	
 	//this will allow us to input a value and will return the option object
 	this.GetOption = function(value) {
+        console.log("Value", value);
 		for(var i=0; i<this.options.length; i++) {
+            console.log("Option Value", this.options[i].value);
 			if(this.options[i].value == value) return this.options[i];
 		}
 	}

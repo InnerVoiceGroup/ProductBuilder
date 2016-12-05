@@ -5,14 +5,17 @@ function Option(data) {
 		
 		this.value = data.Value;
 		this.url = data.URL;
+        
+        this.value += ":" + data.sku;
 		
 		this.listItem = $("<option />", {
-			"text": this.value,
+			"text": this.value.split(":")[0],
 			"class": "product-builder-attribute-dropdown",
 			"value": this.value
 		});
 	}
 
+    test = data;
 	//call the constructor object
 	this.Construct(data);
 }
